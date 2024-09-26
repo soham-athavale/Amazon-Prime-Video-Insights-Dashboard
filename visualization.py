@@ -98,7 +98,7 @@ def plot_genre_distribution_post_2000(data):
 # 5. Distribution of Movie Durations
 def plot_movie_duration_distribution(data):
     movies_data = data[data['type'] == 'Movie']
-    movies_data['duration'] = movies_data['duration'].str.extract('(\d+)').astype(int)
+    movies_data['duration'] = movies_data['duration'].str.extract(r'(\d+)').astype(int)
     movies_data = movies_data[movies_data['duration'] <= 200]
     bin_edges = range(0, 220, 20)
     movies_data['duration_bins'] = pd.cut(movies_data['duration'], bins=bin_edges)
@@ -181,7 +181,7 @@ def plot_tv_show_durations(data):
 def plot_movies_by_duration_group(data):
     movies = data[data['type'] == 'Movie'].copy()
     movies = movies.dropna(subset=['duration'])
-    movies['duration_minutes'] = movies['duration'].str.extract('(\d+)').astype(float)
+    movies['duration_minutes'] = movies['duration'].str.extract(r'(\d+)').astype(float)
     bins = [0, 60, 90, 120, 150, 180, 210, 240, 300]
     labels = ['0-60 min', '61-90 min', '91-120 min', '121-150 min', '151-180 min', '181-210 min', '211-240 min', '240+ min']
     movies['duration_group'] = pd.cut(movies['duration_minutes'], bins=bins, labels=labels, right=False)
