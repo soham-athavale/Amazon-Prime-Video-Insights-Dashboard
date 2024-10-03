@@ -57,10 +57,20 @@ options = [
     "Word Cloud"  # Add Word Cloud option here
 ]
 
+
+
 # Create buttons for each option
 for option in options:
     if st.sidebar.button(option):
         selection = option
+
+# Create a horizontal navbar for Movie Recommendation
+st.markdown("---")  # Add a horizontal line for separation
+st.header("Horizontal Navigation")
+if st.button("Movie Recommendation"):
+    import recommend  # Ensure that recommend.py is in the same directory
+    recommend.run()  # Call the run function in recommend.py
+
 
 # Display the Introduction by default
 if selection == "Introduction":
